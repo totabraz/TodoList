@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="totabraz.com.todolist.activities.MainActivity">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:paddingBottom="20dp"
+        android:background="@color/colorPrimary"
+        android:lines="1"
+        android:maxLines="1"
+        android:textColorHint="#f2f2f2"
+        android:textColor="#f2f2f2"
+        android:textColorHighlight="#f2f2f2"
+        android:minLines="1"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="241dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edtAddTodo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/to_do"
+            android:textColorHint="#f2f2f2"
+            android:textColor="#f2f2f2"
+            android:textColorHighlight="#f2f2f2"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:minLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.RecyclerView
+
+        android:layout_below="@id/inputArea"
+        android:id="@+id/rvTodoList"
+        android:layout_margin="16dp"
+        android:layout_above="@+id/btnEnter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_below="@id/inputArea"
+        android:layout_margin="16dp"
+        android:layout_above="@+id/btnEnter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvNothingToDo"
+            android:text="@string/nothing_to_do"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnAddTodo"
+        style="@style/btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/add_note"/>
+
+
+</RelativeLayout>
