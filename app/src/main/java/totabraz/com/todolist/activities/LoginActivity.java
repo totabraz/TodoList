@@ -25,13 +25,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private final String TAG = "Firebase";
     private FirebaseAuth mAuth;
-    private TextInputEditText edEmail = findViewById(R.id.edtEmail);
-    private TextInputEditText edPasswd = findViewById(R.id.edtPasswd);
+    private TextInputEditText edEmail;
+    private TextInputEditText edPasswd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.mAuth = FirebaseAuth.getInstance();
+        this.edEmail = findViewById(R.id.edtEmail);
+        this.edPasswd = findViewById(R.id.edtPasswd);
 
         this.edPasswd.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
