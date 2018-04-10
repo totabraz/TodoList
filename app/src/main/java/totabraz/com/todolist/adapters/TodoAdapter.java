@@ -42,7 +42,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         if (position == todos.size() - 1) {
             holder.viewBorderBottom.setVisibility(View.GONE);
         }
-        holder.tvTodo.setText(todos.get(0).getMsgm());
+        holder.tvTodo.setText(todos.get(position).getMsgm());
         holder.tvTodo.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {

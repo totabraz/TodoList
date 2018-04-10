@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="totabraz.com.todolist.activities.LoginActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -21,6 +28,7 @@
             android:lines="1"
             android:maxLines="1"
             android:minLines="1"
+            android:textColorHint="@color/colorAccent"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="241dp">
 
@@ -30,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/colorAccent"
                 android:lines="1"
                 android:maxLines="1"
                 android:minLines="1" />
@@ -41,6 +50,7 @@
             android:lines="1"
             android:maxLines="1"
             android:minLines="1"
+            android:textColorHint="@color/colorAccent"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="241dp">
 
@@ -49,6 +59,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+
+                android:textColorLink="@color/colorAccent"
+                android:shadowColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
+                android:textColor="@color/colorAccent"
                 android:inputType="textPassword"
                 android:lines="1"
                 android:maxLines="1"
@@ -66,6 +82,7 @@
     <Button
         android:id="@+id/btnEnter"
         style="@style/btn"
+        android:focusedByDefault="true"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

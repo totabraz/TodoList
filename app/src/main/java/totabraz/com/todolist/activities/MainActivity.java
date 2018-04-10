@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -48,29 +49,58 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         this.mAuth = FirebaseAuth.getInstance();
         this.tvNothing = findViewById(R.id.tvNothingToDo);
         this.progressBar = findViewById(R.id.progressBar);
         this.edtTodo = findViewById(R.id.edtAddTodo);
-        Button btnAdd = findViewById(R.id.btnAddTodo);
         this.rvTodoList = findViewById(R.id.rvTodoList);
 
         progressBar.setVisibility(View.VISIBLE);
         tvNothing.setVisibility(View.GONE);
         rvTodoList.setVisibility(View.GONE);
 
+        edtTodo.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            addNote();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+        Button btnExit = findViewById(R.id.btnExit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
+            }
+        });
+        Button btnAdd = findViewById(R.id.btnAddTodo);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String todo = edtTodo.getText().toString();
-                if (!todo.equals("")) {
-                    addTodo(todo);
-                    edtTodo.setText("");
-                    hideKeyboard();
-                }
+                addNote();
             }
         });
         this.getMyTodos();
+    }
+
+    private void addNote() {
+        String todo = edtTodo.getText().toString();
+        if (!todo.equals("")) {
+            addTodo(todo);
+            edtTodo.setText("");
+            hideKeyboard();
+        }
     }
 
     @Override
@@ -80,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     private void addTodo(String todoTxt) {
