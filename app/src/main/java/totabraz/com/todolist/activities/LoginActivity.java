@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().setElevation(0);
         this.mAuth = FirebaseAuth.getInstance();
         this.edEmail = findViewById(R.id.edtEmail);
         this.edPasswd = findViewById(R.id.edtPasswd);

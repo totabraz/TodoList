@@ -6,14 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context="totabraz.com.todolist.activities.LoginActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.Toolbar>
     <LinearLayout
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

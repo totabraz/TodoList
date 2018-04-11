@@ -1,6 +1,12 @@
 package totabraz.com.todolist.activities;
 
+import android.app.usage.NetworkStats;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -91,15 +97,17 @@ public class MainActivity extends AppCompatActivity {
                 addNote();
             }
         });
-        this.getMyTodos();
+        if(isNetworkAvailable()) this.getMyTodos();
     }
 
     private void addNote() {
-        String todo = edtTodo.getText().toString();
-        if (!todo.equals("")) {
-            addTodo(todo);
-            edtTodo.setText("");
-            hideKeyboard();
+        if(isNetworkAvailable()){
+            String todo = edtTodo.getText().toString();
+            if (!todo.equals("")) {
+                addTodo(todo);
+                edtTodo.setText("");
+                hideKeyboard();
+            }
         }
     }
 
@@ -170,4 +178,15 @@ public class MainActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(edtTodo.getWindowToken(), 0);
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager manager =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        boolean isAvailable = false;
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Network is present and connected
+            isAvailable = true;
+        }
+        return isAvailable;
+    }
 }
